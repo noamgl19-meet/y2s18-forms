@@ -3,19 +3,85 @@
 <head>
     <title>Home</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+    <style>
+    body{
+        background-color: black;
+        color:white;
+    }
+    .allStudents{
+        position:absolute;
+        top:20%;
+        /*margin-right: 43%;
+        margin-left: 43%;*/
+        padding-right:43%;
+        padding-left:43%;
+        padding-bottom:20%;
+        overflow: scroll;
+        color:white;
+
+
+        
+    }
+    #students{
+        border:1px solid black;
+        padding:2px;
+        
+        text-align: center;
+        font-family:Comic Sans MS;
+    }
+    #header{
+        text-align: center;
+        border-bottom: 1px solid black;
+        margin-right:40%;
+        margin-left:40%;
+        margin-top:0%;
+        font-family: Trebuchet MS;
+        position:fixed;
+        top:0%;
+        background-color:black;
+        z-index: 10000;
+    }
+    #add{
+        position:fixed;
+        bottom:0%;
+        margin-right:45%;
+        margin-left:45%;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color:red;
+        border:2px solid black;
+        padding:5px;
+    }
+    #add:hover{
+        color:white;
+        background-color:black;
+        border:2px solid grey;
+    }
+    a{
+        color:white;
+    }
+
+
+
+
+    </style>
 </head>
 <body>
-    <h1>Welcome to the home page!</h1>
-    
-    <hr>
-    
+    <h1 id = "header">Student DataBase:</h1>
+    <div class = "scr">
+    <div class = "allStudents">
     {% for student in students %}
     <p>
+        <div id = "students">
 	    Name: <a href="{{url_for('display_student', student_id=student.student_id)}}">{{student.name}}</a><br>
 	    Class: {{student.year}}<br>
 	    Finished Lab: {{student.finished_lab}}
+        </div>
     </p>
     {% endfor %}
-
-</body>
+    </div>
+    </div>
+    <a href = "{{url_for('add_student_route')}}" id="add">add a student</a>
+    </body>
 </html>
